@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.killshopping.mapper.UserAddressMapper">
+    <resultMap id="BaseResultMap" type="com.kill.killshopping.domain.entity.UserAddress">
+        <id column="address_id" jdbcType="INTEGER" property="addressId" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="area" jdbcType="VARCHAR" property="area" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="zipcode" jdbcType="VARCHAR" property="zipcode" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="is_default" jdbcType="BIT" property="isDefault" />
+        <result column="is_pickup" jdbcType="BIT" property="isPickup" />
+        <result column="label" jdbcType="VARCHAR" property="label" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        address_id, user_id, consignee, email, area, address, zipcode, mobile, is_default,
+        is_pickup, label
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tp_user_address
+        where address_id = #{addressId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

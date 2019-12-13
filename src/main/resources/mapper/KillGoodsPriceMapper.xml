@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kill.killshopping.mapper.KillGoodsPriceMapper">
+  <sql id="Base_Column_List">
+    id, spec_goods_id, status, price, kill_count, begain_time, end_time
+  </sql>
+  <resultMap id="DetailBaseResultMap" type="com.kill.killshopping.domain.vo.KillGoodsSpecPriceDetailVo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="spec_goods_id" jdbcType="INTEGER" property="specGoodsId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="kill_count" jdbcType="INTEGER" property="killCount" />
+    <result column="begain_time" jdbcType="TIMESTAMP" property="begainTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="original_img" jdbcType="VARCHAR" property="originalImg" />
+  </resultMap>
+
+
+  <select id="selectView" parameterType="java.lang.Integer" resultMap="DetailBaseResultMap">
+    SELECT
+    kgp.id, kgp.spec_goods_id,kgp.status,kgp.price, kgp.kill_count,kgp.begain_time,kgp.end_time,  sgp.key, sgp.key_name,  g.goods_name, g.original_img
+    FROM tp_kill_goods_price kgp
+    LEFT JOIN tp_spec_goods_price sgp ON sgp.id = kgp.spec_goods_id
+    LEFT JOIN tp_goods g ON sgp.goods_id = g.goods_id
+    WHERE kgp.status = 1
+  </select>
+
+  <select id="detail" parameterType="java.lang.Integer" resultMap="DetailBaseResultMap">
+    SELECT
+    kgp.id, kgp.spec_goods_id,kgp.status,kgp.price, kgp.kill_count,kgp.begain_time,kgp.end_time,  sgp.key, sgp.key_name,  g.goods_name, g.original_img
+    FROM tp_kill_goods_price kgp
+    LEFT JOIN tp_spec_goods_price sgp ON sgp.id = kgp.spec_goods_id
+    LEFT JOIN tp_goods g ON sgp.goods_id = g.goods_id
+    where kgp.id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+
+</mapper>

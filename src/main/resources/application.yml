@@ -1,0 +1,7 @@
+server:
+  port: 21000
+spring:
+  profiles:
+    active: dev
+  application:
+    name: kill-shopping

@@ -1,0 +1,13 @@
+1.Lombok插件 使用beanUtils.copyProperties不行，必须手动给bean加上get set方法才可以,各位你们如何解决这个问题的？
+解答：
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
+这样就OK了
+
+2.BeanUtils.copyProperties() 用法
+解答：
+1、通过反射将一个对象的值赋值个另外一个对象（前提是对象中属性的名字相同）。
+2、BeanUtils.copyProperties(obj1,obj2); 经常闹混不知道是谁给谁赋值，无意中先到"后付前"这个词来帮助自己记忆这个功能。即将obj2的值赋值给obj1。
+3、如果实例obj2为空对象，即值new了他的实例并没有赋值的话obj1对应的属性值也会被设置为空置。
+

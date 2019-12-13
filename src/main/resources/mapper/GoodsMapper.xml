@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kill.killshopping.test.mapper.GoodsMapper">
+    <select id="selectList" resultType="com.kill.killshopping.test.entity.Goods">
+      SELECT
+      <include refid="goods"/>
+      FROM
+      wp_ex_source_goods_tb_cat_copy
+    </select>
+    <sql id="goods">
+     `cid`,
+     `name`,
+     `is_parent`,
+     `parent_id`,
+     `level`,
+     `pathid`,
+     `path`,
+     `timestamp`
+  </sql>
+
+</mapper>
